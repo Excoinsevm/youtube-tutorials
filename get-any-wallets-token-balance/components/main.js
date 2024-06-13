@@ -1,6 +1,6 @@
 import { useState } from "react";
 const Moralis = require("moralis").default;
-const { EvmChain } = require("@moralisweb3/common-evm-utils");
+import { defineChain } from "thirdweb"
 import styles from "../styles/Home.module.css";
 
 export default function Header() {
@@ -10,10 +10,10 @@ export default function Header() {
 
   const handleSubmit = async () => {
     address = document.querySelector("#walletAddress").value;
-    const chain = EvmChain.ETHEREUM;
+    const chain = defineChain(7171);
 
     await Moralis.start({
-      apiKey: process.env.NEXT_PUBLIC_MORALIS_API_KEY,
+      apiKey: process.env.API_KEY,
     });
 
     const response = await Moralis.EvmApi.token.getWalletTokenBalances({
